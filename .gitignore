@@ -1,1 +1,4 @@
-glMatrix.js
+node_modules/
+public/assets/
+public/font/
+.DS_Store

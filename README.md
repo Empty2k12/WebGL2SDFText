@@ -1,8 +1,8 @@
-# WebGL 2 Signed Distance Font Renderer with Vertex Displacement Shader
+# WebGL 2 Signed Distance Font Renderer [![Build Status](https://travis-ci.org/Empty2k12/WebGL2SDFText.svg?branch=master)](https://travis-ci.org/Empty2k12/WebGL2SDFText)
 
 ![WebGL 2 Signed Distance Font Renderer](http://i.imgur.com/RlchBxm.png)
 
-WebGL 2 Signed Distance Font Renderer with Vertex Displacement Shader is a WebGL 2 demo which shows how to render text in OpenGL using modern graphic techniques.
+WebGL 2 Signed Distance Font Renderer is a WebGL 2 demo which shows how to render text in OpenGL using modern graphic techniques.
 
   - Automatic font mesh generation
   - Included .fnt to .json converter
@@ -10,6 +10,8 @@ WebGL 2 Signed Distance Font Renderer with Vertex Displacement Shader is a WebGL
 # Planned Features!
 
   - More options on the font mesh generator
+  - Tryout-Area where the text can be changed and different fonts can be selected
+  - Show FPS (Frames per Second) as Text rendered with this project
 
 ### Tech
 
@@ -22,11 +24,11 @@ WebGL 2 Signed Distance Font Renderer with Vertex Displacement Shader uses a num
 
 ### Installation
 
-WebGL 2 Signed Distance Font Renderer with Vertex Displacement Shader requires [glMatrix-v0.9.5.js](https://searchcode.com/codesearch/raw/13125284/) to run.
+WebGL 2 Signed Distance Font Renderer requires `npm` to run.
 
-Create a file called `glMatrix.js` and paste the source code.
+Clone this repository, run `npm install` and `npm start dev` in the created folder to get the development server under http://localhost:8080/ running.
 
-Run using a web server as cross domain requests don't work with `file://` prefixes.
+To build for production release, run `npm run build`. Simply serve the `public/` folder.
 
 ### Development
 

@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+  - '5'
+
+matrix:
+  fast_finish: true
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - npm prune
+  - npm set progress=false
+  - npm install -g npm@latest
+
+script: npm run build

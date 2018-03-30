@@ -43,7 +43,7 @@ The following is the content of the info array for the typeface "Arial":
 
 A full sample SimpleWebGLText file for the font Arial can be found [here]().
 
-Each subarray can be extended with data the might be needed by the text renderer.
+Each subarray can be extended with data that might be needed by the text renderer.
 
 # Development
 

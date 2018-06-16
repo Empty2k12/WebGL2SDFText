@@ -41,7 +41,7 @@ Written by Gero Gerke
  * Arial Font Copyright Robin Nicholas and Patricia Saunders
  * Comic Sans Font Copyright Microsoft
 
-[![WTFPL License](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png)](http://www.wtfpl.net/)
+[![WTFPL License](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png)](http://www.wtfpl.net/) [![Greenkeeper badge](https://badges.greenkeeper.io/Empty2k12/WebGL2SDFText.svg)](https://greenkeeper.io/)
 
 
 **Free Software, Hell Yeah!**

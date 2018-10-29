@@ -92,9 +92,9 @@ SignedDistanceFont.prototype.fillGeometry = function fillGeometry(geometry, myTe
 
       let kerningOffset = 0;
       if (
-        previouslyDrawnLetter !== -2 &&
-        options.fontInfo.chars[previouslyDrawnLetter].kernings !== undefined &&
-        options.fontInfo.chars[previouslyDrawnLetter].kernings[currentCharCode]
+        previouslyDrawnLetter !== -2
+        && options.fontInfo.chars[previouslyDrawnLetter].kernings !== undefined
+        && options.fontInfo.chars[previouslyDrawnLetter].kernings[currentCharCode]
       ) {
         kerningOffset = Number(options
           .fontInfo

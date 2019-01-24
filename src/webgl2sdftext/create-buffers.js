@@ -45,7 +45,18 @@ const createBuffers = async (gl) => {
   cubeVertexIndexBuffer.itemSize = 1;
   cubeVertexIndexBuffer.numItems = font.mesh.indices.length;
 
-  return { cubeVertexPositionBuffer, cubeVertexTextureCoordBuffer, cubeVertexIndexBuffer };
+  const cubeVertexBarycentricBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexBarycentricBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(font.mesh.barycentrics), gl.STATIC_DRAW);
+  cubeVertexBarycentricBuffer.itemSize = 3;
+  cubeVertexBarycentricBuffer.nimItems = font.mesh.barycentrics.length;
+
+  return {
+    cubeVertexPositionBuffer,
+    cubeVertexTextureCoordBuffer,
+    cubeVertexIndexBuffer,
+    cubeVertexBarycentricBuffer
+  };
 };
 
 export default createBuffers;

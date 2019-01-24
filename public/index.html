@@ -12,9 +12,20 @@
         margin: 0;
         padding: 0;
       }
+      .overlay {
+        background: white;
+        padding: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
     </style>
   </head>
   <body>
+    <div class="overlay">
+      <input type="checkbox" id="wireframe" name="wireframe"> Show Wireframe<br/>
+      <input type="checkbox" id="rotation" name="rotation" checked> Rotation<br/>
+    </div>
     <canvas id="canvas"></div>
     <script src="assets/js/bundle.js"></script>
   </body>

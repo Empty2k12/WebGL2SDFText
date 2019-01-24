@@ -10,6 +10,7 @@ function SignedDistanceFont(myText, options) {
     vertices: [],
     indices: [],
     textureCoords: [],
+    barycentrics: [],
   };
   this.fillGeometry(geometry, myText, options);
 
@@ -58,6 +59,9 @@ SignedDistanceFont.prototype.addLetter = function addLetter(
     uvX, uvY,
     uvX, maxUvY,
     maxUvX, maxUvY,
+  );
+  geometry.barycentrics.push(
+    1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0
   );
   return geometry;
 };

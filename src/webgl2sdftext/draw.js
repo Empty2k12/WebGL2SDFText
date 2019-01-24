@@ -12,12 +12,14 @@ function animate(now, lastTime, xRot, yRot) {
   const xSpeed = 3;
   const ySpeed = -3;
 
+  const rotation = !document.getElementById('rotation').checked;
+
   let newXRot = xRot;
   let newYRot = yRot;
   if (lastTime !== 0) {
     const elapsedTime = now - lastTime;
-    newXRot += (xSpeed * elapsedTime) / 1000.0;
-    newYRot += (ySpeed * elapsedTime) / 1000.0;
+    newXRot += rotation ? 0 : (xSpeed * elapsedTime) / 1000.0;
+    newYRot += rotation ? 0 : (ySpeed * elapsedTime) / 1000.0;
   }
   return { newXRot, newYRot };
 }
@@ -33,7 +35,8 @@ const draw = (gl, now, lastTime, lastXRot, lastYRot, state) => {
   const {
     cubeVertexPositionBuffer,
     cubeVertexTextureCoordBuffer,
-    cubeVertexIndexBuffer
+    cubeVertexIndexBuffer,
+    cubeVertexBarycentricBuffer,
   } = buffers;
 
   const mvMatrix = mat4.create();
@@ -67,13 +70,17 @@ const draw = (gl, now, lastTime, lastXRot, lastYRot, state) => {
   // eslint-disable-next-line
   gl.vertexAttribPointer(attributes.textureCoords, cubeVertexTextureCoordBuffer.itemSize, gl.FLOAT, false, 0, 0);
 
+  // Uploading our barycentric coordinates to the GPU
+  gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexBarycentricBuffer);
+  // eslint-disable-next-line
+  gl.vertexAttribPointer(attributes.barycentrics, cubeVertexBarycentricBuffer.itemSize, gl.FLOAT, false, 0, 0);
+
   // Sending texture to the shader
   gl.activeTexture(gl.TEXTURE0);
   gl.bindTexture(gl.TEXTURE_2D, textures.arial);
 
   // Sending Uniforms to the shader
-  gl.uniform1i(uniforms.sampler, 0);
-  gl.uniform1f(uniforms.tick, now);
+  gl.uniform1f(uniforms.show_wireframe, document.getElementById('wireframe').checked ? 1.0 : 0.0);
   gl.uniformMatrix4fv(uniforms.proj_matrix, false, pMatrix);
   gl.uniformMatrix4fv(uniforms.mv_matrix, false, mvMatrix);
 

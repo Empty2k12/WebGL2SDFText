@@ -39,7 +39,9 @@ const demo = async () => {
   const attributes = {
     position: gl.getAttribLocation(program, 'a_position'),
     textureCoords: gl.getAttribLocation(program, 'a_uv'),
+    barycentrics: gl.getAttribLocation(program, 'a_barycentrics'),
   };
+
   // Enabling the attributes
   const attributeValues = Object.values(attributes);
   for (let i = 0; i <= attributeValues.length; i += 1) {
@@ -50,8 +52,7 @@ const demo = async () => {
   const uniforms = {
     proj_matrix: gl.getUniformLocation(program, 'uPMatrix'),
     mv_matrix: gl.getUniformLocation(program, 'uMVMatrix'),
-    sampler: gl.getUniformLocation(program, 'uSampler'),
-    tick: gl.getUniformLocation(program, 'tick'),
+    show_wireframe: gl.getUniformLocation(program, 'uWireframe'),
   };
 
   // Array holding our texture references

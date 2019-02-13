@@ -24,7 +24,7 @@ function animate(now, lastTime, xRot, yRot) {
   return { newXRot, newYRot };
 }
 
-const draw = (gl, now, lastTime, lastXRot, lastYRot, state) => {
+const draw = (gl, now, lastTime, lastXRot, lastYRot, state, update) => {
   const {
     buffers,
     attributes,
@@ -92,8 +92,10 @@ const draw = (gl, now, lastTime, lastXRot, lastYRot, state) => {
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeVertexIndexBuffer);
   gl.drawElements(gl.TRIANGLES, cubeVertexIndexBuffer.numItems, gl.UNSIGNED_SHORT, 0);
 
+  update();
+
   // Next frame queueing
-  requestAnimationFrame(nextNow => draw(gl, nextNow, now, xRot, yRot, state));
+  requestAnimationFrame(nextNow => draw(gl, nextNow, now, xRot, yRot, state, update));
 };
 
 export default draw;

@@ -3,7 +3,7 @@ import fragmentShaderSrc from './shaders/fragment.frag';
 import vertexShaderSrc from './shaders/vertex.vert';
 import resizeCanvas from './resize-canvas';
 import createProgram from './create-program';
-import createBuffers from './create-buffers';
+import { createBuffers, updateBuffers } from './create-buffers';
 import createTexture from './create-texture';
 import draw from './draw';
 
@@ -12,9 +12,26 @@ function throwOnGLError(err, funcName) {
   throw new Error(`${glErr} was caused by call to ${funcName}`);
 }
 
+function readTextFile(file) {
+  return new Promise(((resolve) => {
+    const xhr = new XMLHttpRequest();
+    xhr.overrideMimeType('application/json');
+    xhr.open('GET', file, true);
+    xhr.onreadystatechange = function onreadystatechange() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        resolve(xhr.response);
+      }
+    };
+    xhr.send();
+  }));
+}
+
 const demo = async () => {
   const canvas = document.getElementById('canvas');
   const glNoDebug = canvas.getContext('webgl2', { alpha: true });
+
+  const fontInfoUnparsed = await readTextFile('font/arial/arial.json');
+  const fontInfo = JSON.parse(fontInfoUnparsed);
 
   // TODO: Only wrap in development
   const gl = WebGLDebugUtil.makeDebugContext(glNoDebug, throwOnGLError);
@@ -33,7 +50,8 @@ const demo = async () => {
   const program = createProgram(gl, shaders);
 
   // Creating our mesh indices, normals and texture coords
-  const buffers = await createBuffers(gl);
+  let buffers = createBuffers(gl);
+  buffers = updateBuffers(gl, fontInfo, buffers);
 
   // Array holding our attribute locations
   const attributes = {
@@ -78,6 +96,8 @@ const demo = async () => {
     attributes,
     uniforms,
     textures,
+  }, () => {
+    buffers = updateBuffers(gl, fontInfo, buffers);
   }));
 };
 
